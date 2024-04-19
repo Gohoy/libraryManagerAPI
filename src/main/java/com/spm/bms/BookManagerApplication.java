@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@MapperScan(value = "com.wangpeng.bms.mapper")
+@MapperScan(value = "com.spm.bms.mapper")
 public class BookManagerApplication {
 
     public static void main(String[] args) {

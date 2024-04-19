@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <!--GAV坐标-->
-    <groupId>com.wangpeng.bms</groupId>
+    <groupId>com.spm.bms</groupId>
     <artifactId>BookManagerApi</artifactId>
     <version>1.0.5</version>
 
