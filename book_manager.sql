@@ -13,6 +13,8 @@
 
  Date: 21/11/2021 19:28:39
 */
+CREATE DATABASE book_manager;
+USE book_manager;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
