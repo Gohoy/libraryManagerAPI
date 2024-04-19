@@ -42,6 +42,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <!--定义资源路径-->
         <resources>
