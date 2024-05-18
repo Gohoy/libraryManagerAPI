@@ -11,6 +11,9 @@
     <result column="bookDesc" jdbcType="VARCHAR" property="bookdesc" />
     <result column="isBorrowed" jdbcType="TINYINT" property="isborrowed" />
     <result column="bookImg" jdbcType="TINYINT" property="bookimg" />
+    <result column="location" jdbcType="VARCHAR" property="location"/>
+    <result column="code" jdbcType="VARCHAR" property="code"/>
+    <result column="count" jdbcType="INTEGER" property="count"/>
   </resultMap>
   <sql id="Base_Column_List">
     bookId, bookName, bookAuthor, bookPrice, bookTypeId, bookDesc, isBorrowed, bookImg
@@ -21,7 +24,13 @@
     from book_info
     where bookId = #{bookid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *
+    from book_info
+    where code = #{code,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from book_info
     where bookId = #{bookid,jdbcType=INTEGER}
   </delete>
@@ -60,6 +69,12 @@
       <if test="bookimg != null">
         bookImg,
       </if>
+        <if test="code != null">
+          code,
+        </if>
+      <if test="location != null">
+        location,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="bookid != null">
@@ -85,6 +100,12 @@
       </if>
       <if test="bookimg != null">
         #{bookimg,jdbcType=TINYINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

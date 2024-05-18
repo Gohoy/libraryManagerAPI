@@ -26,6 +26,11 @@ public class BookInfoServiceImpl implements BookInfoService {
     }
 
     @Override
+    public BookInfo queryBookInfoByCode(String  code) {
+       return bookInfoMapper.selectByCode(code);
+    }
+
+    @Override
     public BookInfo queryBookInfoById(Integer bookid) {
         return bookInfoMapper.selectByPrimaryKey(bookid);
     }

@@ -21,6 +21,35 @@ public class BookInfo {
 
     private String bookimg;
 
+    private int count;
+
+    private String code;
+    private String location;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public Integer getBookid() {
         return bookid;
     }

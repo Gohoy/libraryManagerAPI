@@ -32,4 +32,6 @@ public interface BookInfoMapper {
     int selectCountByType(Map<String, Object> map);
 
     List<BookInfo> selectByType(Map<String, Object> map);
+
+    BookInfo selectByCode(String code);
 }

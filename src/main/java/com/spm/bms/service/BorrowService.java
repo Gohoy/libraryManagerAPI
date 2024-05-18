@@ -25,4 +25,5 @@ public interface BorrowService {
     Integer updateBorrow2(Borrow borrow);
 
     Borrow queryBorrowsById(Integer borrowid);
+    Borrow queryBorrowsByBookId(Integer bookId);
 }

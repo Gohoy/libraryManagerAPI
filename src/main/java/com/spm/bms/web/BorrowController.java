@@ -146,5 +146,28 @@ public class BorrowController {
         }
         return 1;
     }
+    @RequestMapping(value = {"/returnBookByCode", "/reader/returnBookByCode"})
+    @Transactional
+    public Integer returnBookByCode( String code){
+         // 从code获取书的id,然后执行普通的return过程
+        BookInfo bookInfoByCode = bookInfoService.queryBookInfoByCode(code);
+        Integer bookid = bookInfoByCode.getBookid();
+        Borrow bookBorrowInfo = borrowService.queryBorrowsByBookId(bookid);
+        // 更新图书表的isBorrowed
+        BookInfo bookInfo = new BookInfo();
+        bookInfo.setBookid(bookid);
+        bookInfo.setIsborrowed((byte) 0);
+        Integer res2 = bookInfoService.updateBookInfo(bookInfo);
+        if(res2 == 0) throw new OperationFailureException("图书" + bookid + "更新被借信息失败");
+
+        // 更新Borrow表，更新结束时间
+        Borrow borrow = new Borrow();
+        borrow.setBorrowid(bookBorrowInfo.getBorrowid());
+        borrow.setReturntime(new Date(System.currentTimeMillis()));
+        Integer res1 = borrowService.updateBorrow2(borrow);
+        if(res1 == 0) throw new OperationFailureException("图书" + bookid + "更新借阅记录失败");
+
+        return  1;
+    }
 
 }

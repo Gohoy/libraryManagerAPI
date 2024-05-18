@@ -19,6 +19,11 @@
     from borrow
     where borrowId = #{borrowid,jdbcType=INTEGER}
   </select>
+  <select id="selectByBookId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from borrow
+    where bookId = #{bookId,jdbcType=INTEGER} and returnTime is null
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from borrow
     where borrowId = #{borrowid,jdbcType=INTEGER}

@@ -9,6 +9,7 @@ public interface BookInfoService {
     Integer getCount();
 
     List<BookInfo> queryBookInfos();
+    BookInfo queryBookInfoByCode(String code);
 
     BookInfo queryBookInfoById(Integer bookid);
 

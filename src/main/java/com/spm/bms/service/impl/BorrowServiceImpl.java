@@ -99,4 +99,9 @@ public class BorrowServiceImpl implements BorrowService {
         return borrowMapper.selectByPrimaryKey(borrowid);
     }
 
+    @Override
+    public Borrow queryBorrowsByBookId(Integer bookId) {
+        return borrowMapper.selectByBookId(bookId);
+    }
+
 }
