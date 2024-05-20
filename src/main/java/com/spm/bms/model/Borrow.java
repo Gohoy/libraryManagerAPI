@@ -22,6 +22,25 @@ public class Borrow {
 
     private String returntimestr;
 
+    private Date endtime;
+    private String endtimestr;
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
+
+    public String getEndtimestr() {
+        return endtimestr;
+    }
+
+    public void setEndtimestr(String endtimestr) {
+        this.endtimestr = endtimestr;
+    }
+
     public Integer getBorrowid() {
         return borrowid;
     }

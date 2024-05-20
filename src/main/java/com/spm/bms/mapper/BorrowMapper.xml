@@ -9,9 +9,10 @@
     <result column="bookName" jdbcType="INTEGER" property="bookname" />
     <result column="borrowTime" jdbcType="TIMESTAMP" property="borrowtime" />
     <result column="returnTime" jdbcType="TIMESTAMP" property="returntime" />
+    <result column="endTime" jdbcType="TIMESTAMP" property="endtime"/>
   </resultMap>
   <sql id="Base_Column_List">
-    borrowId, userId, bookId, borrowTime, returnTime
+    borrowId, userId, bookId, borrowTime, returnTime,endTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -52,6 +53,9 @@
       <if test="returntime != null">
         returnTime,
       </if>
+      <if test="endTime != null">
+        endTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="borrowid != null">
@@ -68,6 +72,9 @@
       </if>
       <if test="returntime != null">
         #{returntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -94,7 +101,8 @@
     set userId = #{userid,jdbcType=INTEGER},
       bookId = #{bookid,jdbcType=INTEGER},
       borrowTime = #{borrowtime,jdbcType=TIMESTAMP},
-      returnTime = #{returntime,jdbcType=TIMESTAMP}
+      returnTime = #{returntime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP}
     where borrowId = #{borrowid,jdbcType=INTEGER}
   </update>
   <select id="selectAllByLimit" resultMap="BaseResultMap">

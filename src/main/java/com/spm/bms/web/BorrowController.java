@@ -9,6 +9,7 @@ import com.spm.bms.service.BorrowService;
 import com.spm.bms.utils.MyResult;
 import com.spm.bms.utils.MyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +43,10 @@ public class BorrowController {
     @RequestMapping(value = "/addBorrow")
     public Integer addBorrow(@RequestBody Borrow borrow){
         return borrowService.addBorrow(borrow);
+    }
+    @RequestMapping(value = "/keepMoreDays")
+    public Integer keepMoreDays(Integer borrowId){
+        return  borrowService.keepMoreDays(borrowId);
     }
 
     // 获得数量

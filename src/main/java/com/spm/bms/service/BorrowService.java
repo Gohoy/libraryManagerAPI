@@ -26,4 +26,5 @@ public interface BorrowService {
 
     Borrow queryBorrowsById(Integer borrowid);
     Borrow queryBorrowsByBookId(Integer bookId);
+    Integer keepMoreDays(Integer borrowId);
 }

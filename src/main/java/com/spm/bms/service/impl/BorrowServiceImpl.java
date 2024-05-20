@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -31,10 +32,12 @@ public class BorrowServiceImpl implements BorrowService {
     public List<Borrow> searchBorrowsByPage(Map<String, Object> params) {
         List<Borrow> borrows = borrowMapper.selectBySearch(params);
         // 添加string类型的时间显示
-        for(Borrow borrow : borrows) {
+        for (Borrow borrow : borrows) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            if(borrow.getBorrowtime() != null) borrow.setBorrowtimestr(simpleDateFormat.format(borrow.getBorrowtime()));
-            if(borrow.getReturntime() != null) borrow.setReturntimestr(simpleDateFormat.format(borrow.getReturntime()));
+            if (borrow.getBorrowtime() != null)
+                borrow.setBorrowtimestr(simpleDateFormat.format(borrow.getBorrowtime()));
+            if (borrow.getReturntime() != null)
+                borrow.setReturntimestr(simpleDateFormat.format(borrow.getReturntime()));
         }
         return borrows;
     }
@@ -46,11 +49,16 @@ public class BorrowServiceImpl implements BorrowService {
         try {
             borrow.setBorrowtime(simpleDateFormat.parse(borrow.getBorrowtimestr()));
             borrow.setReturntime(simpleDateFormat.parse(borrow.getReturntimestr()));
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(borrow.getBorrowtime());
+            calendar.add(Calendar.DAY_OF_MONTH, 20);
+            borrow.setEndtime(calendar.getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return borrowMapper.insertSelective(borrow);
     }
+
 
     // 不会调整时间格式的add
     @Override
@@ -62,14 +70,14 @@ public class BorrowServiceImpl implements BorrowService {
     public Integer deleteBorrow(Borrow borrow) {
         // 先查询有没有还书
         Borrow borrow1 = borrowMapper.selectByPrimaryKey(borrow.getBorrowid());
-        if(borrow1.getReturntime() == null) return 0;
+        if (borrow1.getReturntime() == null) return 0;
         return borrowMapper.deleteByPrimaryKey(borrow.getBorrowid());
     }
 
     @Override
     public Integer deleteBorrows(List<Borrow> borrows) {
         int count = 0;
-        for(Borrow borrow : borrows) {
+        for (Borrow borrow : borrows) {
             count += deleteBorrow(borrow);
         }
         return count;
@@ -102,6 +110,16 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public Borrow queryBorrowsByBookId(Integer bookId) {
         return borrowMapper.selectByBookId(bookId);
+    }
+
+    @Override
+    public Integer keepMoreDays(Integer borrowId) {
+        Borrow borrow = queryBorrowsById(borrowId);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(borrow.getEndtime());
+        calendar.add(Calendar.DAY_OF_MONTH, 20);
+        borrow.setEndtime(calendar.getTime());
+        return borrowMapper.updateByPrimaryKey(borrow);
     }
 
 }
