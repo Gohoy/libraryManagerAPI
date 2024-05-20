@@ -44,6 +44,8 @@ public class BorrowController {
     public Integer addBorrow(@RequestBody Borrow borrow){
         return borrowService.addBorrow(borrow);
     }
+
+    // 续借
     @RequestMapping(value = "/keepMoreDays")
     public Integer keepMoreDays(Integer borrowId){
         return  borrowService.keepMoreDays(borrowId);
