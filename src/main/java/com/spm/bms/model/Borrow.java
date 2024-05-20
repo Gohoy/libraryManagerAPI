@@ -112,4 +112,8 @@ public class Borrow {
     public void setReturntimestr(String returntimestr) {
         this.returntimestr = returntimestr;
     }
+
+    public void KeepMoredays(){
+        return borrowId;
+    }
 }
