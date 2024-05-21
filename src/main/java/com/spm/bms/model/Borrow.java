@@ -113,7 +113,4 @@ public class Borrow {
         this.returntimestr = returntimestr;
     }
 
-    public void KeepMoredays(){
-        return borrowId;
-    }
 }
