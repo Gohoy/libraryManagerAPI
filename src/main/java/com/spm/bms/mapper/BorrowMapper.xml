@@ -53,7 +53,7 @@
       <if test="returntime != null">
         returnTime,
       </if>
-      <if test="endTime != null">
+      <if test="endtime != null">
         endTime,
       </if>
     </trim>
@@ -73,7 +73,7 @@
       <if test="returntime != null">
         #{returntime,jdbcType=TIMESTAMP},
       </if>
-      <if test="endTime != null">
+      <if test="endtime != null">
         #{endtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
