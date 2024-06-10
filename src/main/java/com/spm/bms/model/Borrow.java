@@ -12,6 +12,8 @@ public class Borrow {
 
     private Integer bookid;
 
+    private String code;
+
     private String bookname;
 
     private Date borrowtime;
@@ -113,4 +115,11 @@ public class Borrow {
         this.returntimestr = returntimestr;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

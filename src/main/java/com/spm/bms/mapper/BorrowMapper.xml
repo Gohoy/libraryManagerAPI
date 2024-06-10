@@ -130,7 +130,7 @@
     </if>
   </select>
   <select id="selectBySearch" resultMap="BaseResultMap">
-    select borrowId, borrow.userId, borrow.bookId, borrowTime, returnTime, userName, bookName
+    select borrowId, borrow.userId, borrow.bookId, borrowTime, returnTime, userName, bookName, code
     from borrow, user, book_info
     where borrow.userId = user.userId and borrow.bookId = book_info.bookId
     <if test="username != null and username != '' ">

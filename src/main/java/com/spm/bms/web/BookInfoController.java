@@ -85,4 +85,9 @@ public class BookInfoController {
     public Integer updateBookInfo(@RequestBody BookInfo bookInfo){
         return bookInfoService.updateBookInfo(bookInfo);
     }
+
+    @PostMapping(value = "/importBookBatch")
+    public List<BookInfo> importBookBatch(@RequestBody List<String>ISBNs){
+        return bookInfoService.importBookBatch(ISBNs);
+    }
 }

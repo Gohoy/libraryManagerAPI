@@ -9,6 +9,7 @@ public interface BookInfoService {
     Integer getCount();
 
     List<BookInfo> queryBookInfos();
+
     BookInfo queryBookInfoByCode(String code);
 
     BookInfo queryBookInfoById(Integer bookid);
@@ -24,4 +25,6 @@ public interface BookInfoService {
     Integer deleteBookInfos(List<BookInfo> bookInfos);
 
     Integer updateBookInfo(BookInfo bookInfo);
+
+    List<BookInfo> importBookBatch(List<String> ISBNs);
 }

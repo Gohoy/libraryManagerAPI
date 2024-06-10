@@ -34,4 +34,6 @@ public interface BookInfoMapper {
     List<BookInfo> selectByType(Map<String, Object> map);
 
     BookInfo selectByCode(String code);
+
+    List<BookInfo>selectByCodes(List<String>codes);
 }
